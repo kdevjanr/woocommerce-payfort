@@ -1,6 +1,7 @@
 # Table of contents
 
-* [👋 Welcome!](README.md)
+* [WooCommerce](README.md)
+* [👋 Welcome!](welcome.md)
 
 ## About us
 
@@ -22,3 +23,7 @@
 ## Policies
 
 * [🌴 Requesting Time Off](policies/requesting-time-off.md)
+
+***
+
+* [Page 1](page-1.md)
