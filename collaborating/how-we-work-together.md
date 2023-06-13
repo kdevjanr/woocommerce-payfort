@@ -10,6 +10,10 @@ Whether you decide to work from home or from a co-working space, we value the ba
 
 We encourage any working hours that are applicable to you, you know how to structure your day.
 
+```javascript
+// Some code
+```
+
 ### Etiquette Practices
 
 We hire folks from many different cultures, from all across the world, making aspects of work uniquely challenging. These challenges include the obvious like collaborating across time zones, and arranging offsites; but also the less obvious like respecting pronouns, pronouncing names, and respecting gender identity.
