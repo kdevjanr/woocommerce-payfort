@@ -91,7 +91,9 @@ HTTPs Form Post Request.\
 
 **Include the following parameters in the request you will send to Amazon Payment Services:**
 
-```shell
+{% tabs %}
+{% tab title="Shell" %}
+```sh
 {
     {
     "amount": "68557",
@@ -112,7 +114,9 @@ HTTPs Form Post Request.\
 }
 }
 ```
+{% endtab %}
 
+{% tab title="PHP" %}
 ```php
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
@@ -153,10 +157,12 @@ curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
 $result = curl_exec($ch);
 curl_close($ch);
 # Print response.
-echo "<pre>$result</pre>";
+echo "<pre>$result</pre>";p
 ```
+{% endtab %}
 
-```python
+{% tab title="Python" %}
+```
 import urllib
 import urllib2
 import json
@@ -192,8 +198,10 @@ response = urllib2.urlopen(req)
 page = response.read()
 print page + '\n\n'
 ```
+{% endtab %}
 
-```ruby
+{% tab title="Ruby" %}
+```
 require 'json'
 require 'net/http'
 require 'net/https'
@@ -233,8 +241,10 @@ request.add_field('Content-Type', 'application/json')
 request.body = arrData
 response = http.request(request)
 ```
+{% endtab %}
 
-```java
+{% tab title="Untitled" %}
+```
 String jsonRequestString = "{\n    \"amount\": \"68557\",\n    \"digital_wallet\": \"STCPAY\",\n    \"signature\": \"\",\n    \"merchant_identifier\": \"{{merchant_identifier}}\",\n    \"access_code\": \"FIX7skJDGmjJF0WDh2oB\",\n    \"customer_ip\": \"127.0.0.1\",\n    \"language\": \"en\",\n    \"otp\": \"12345\",\n    \"command\": \"PURCHASE\",\n    \"merchant_reference\": \"merchantTest-10117\",\n    \"customer_email\": \"merchant07@merchantdomain.com\",\n    \"return_url\": \"http://127.0.0.1/merchantSHEK/payment/stcResponse\",\n    \"currency\": \"SAR\",\n    \"phone_number\": \"0551111111\",\n    \"remember_me\": \"YES\"\n}";
 
 // Define and Initialize HttpClient
@@ -259,6 +269,8 @@ sb.append(line);
 // Print response
 System.out.println(sb.toString());
 ```
+{% endtab %}
+{% endtabs %}
 
 | ATTRIBUTES                                                                          | Description                                                                                                                                                                                                                               |
 | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -287,40 +299,17 @@ System.out.println(sb.toString());
 | <p><strong>settlement_reference</strong><br>Alphanumeric<br>Optional<br>max: 34</p> | <p>The Merchant submits unique value to Amazon Payment Services. The value is then passed to the Acquiring bank and displayed to the merchant in the Acquirer settlement file.<br>Example: XYZ9239-yu898<br>Special characters: - _ .</p> |
 | <p><strong>return_url</strong><br>Alphanumeric<br>Optional<br>Max: 400</p>          | <p>The URL of the Merchant's page that will be displayed to the customer when the order is processed.<br>Example: https://www.merchant.com<br>Special characters: $ ! = ? # &#x26; - _ / : .</p>                                          |
 
+<details>
+
+<summary></summary>
+
+
+
+</details>
+
 ### Redirection - Response
 
 **The following parameters will be returned in PayFort's Response:**
-
-| ATTRIBUTES                                                              | Description                                                                                                                                                                                                                                                                                  |
-| ----------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <p><strong>command</strong><br>Alpha<br>Max: 20</p>                     | <p>A command.<br>Possible/ expected values: PURCHASE</p>                                                                                                                                                                                                                                     |
-| <p><strong>response_code</strong><br>Numeric<br>Max: 5</p>              | <p>Response Code carries the value of our system's response. *The code consists of five digits, the first 2 digits represent the response <a href="broken-reference">status</a>, and the last 3 digits represent the response <a href="broken-reference">messages</a>.<br>Example: 20064</p> |
-| <p><strong>response_message</strong><br>Alphanumeric<br>Max: 150</p>    | <p>The message description of the response code; it returns according to the request language.<br>Possible/ expected values: Please refer to section <a href="broken-reference">messages</a></p>                                                                                             |
-| <p><strong>access_code</strong><br>Alphanumeric<br>Max: 20</p>          | <p>Access code.<br>Example: zx0IPmPy5jp1vAz8Kpg7</p>                                                                                                                                                                                                                                         |
-| <p><strong>digital_wallet</strong><br>Alpha<br>Max: 20</p>              | <p>Digital wallet used for transaction.<br>Possible/ expected values: STCPAY</p>                                                                                                                                                                                                             |
-| <p><strong>merchant_identifier</strong><br>Alphanumeric<br>Max: 20</p>  | <p>The ID of the Merchant.<br>Example: CycHZxVj</p>                                                                                                                                                                                                                                          |
-| <p><strong>merchant_reference</strong><br>Alphanumeric<br>Max: 40</p>   | <p>The Merchant’s unique order number.<br>Example: XYZ9239-yu898</p>                                                                                                                                                                                                                         |
-| <p><strong>amount</strong><br>Numeric<br>Max: 10</p>                    | <p>The transaction's amount.<br>Example: 10000</p>                                                                                                                                                                                                                                           |
-| <p><strong>currency</strong><br>Alpha<br>Max: 3</p>                     | <p>The currency of the transaction’s amount in ISO code 3.<br>Possible/ expected values: SAR</p>                                                                                                                                                                                             |
-| <p><strong>language</strong><br>Alpha<br>Max: 2</p>                     | <p>The checkout page and messages language.<br>Possible/ expected values: en/ ar</p>                                                                                                                                                                                                         |
-| <p><strong>customer_email</strong><br>Alphanumeric<br>Max: 254</p>      | <p>The customer's email.<br>Example: customer1@domain.com</p>                                                                                                                                                                                                                                |
-| <p><strong>customer_ip</strong><br>Alphanumeric<br>max: 45</p>          | <p>It holds the customer's IP address. *We support IPv4 and IPv6 as shown in the example below.<br>Example:<br>IPv4 → 192.178.1.10<br>IPv6 → 2001:0db8:3042:0002:5a55:caff:fef6:bdbf</p>                                                                                                     |
-| <p><strong>signature</strong><br>Alphanumeric<br>Max: 200</p>           | <p>A string hashed using the Secure Hash Algorithm. Please refer to section <a href="broken-reference">Signature</a><br>Example: 7cad05f0212ed933c9a5d5dffa31661acf2c827a</p>                                                                                                                |
-| <p><strong>eci</strong><br>Alpha<br>Max: 16</p>                         | <p>Ecommerce indicator.<br>Possible/ expected values: ECOMMERCE</p>                                                                                                                                                                                                                          |
-| <p><strong>payment_option</strong><br>Alpha<br>Max: 10</p>              | <p>Payment option.<br>Possible/ expected values: STCPAY<br></p>                                                                                                                                                                                                                              |
-| <p><strong>fort_id</strong><br>Numeric<br>Max: 20</p>                   | <p>The order's unique reference returned by our system.<br>Example: 149295435400084008</p>                                                                                                                                                                                                   |
-| <p><strong>status</strong><br>Numeric<br>Max: 2</p>                     | <p>A two-digit numeric value that indicates the status of the transaction.<br>Possible/ expected values: Please refer to section <a href="broken-reference">statuses</a></p>                                                                                                                 |
-| <p><strong>token_name</strong><br>Alphanumeric<br>max: 100</p>          | <p>The Token received from the Tokenization process.<br>Example: COp9Vmp</p>                                                                                                                                                                                                                 |
-| <p><strong>order_description</strong><br>Alphanumeric<br>Max: 150</p>   | <p>A description of the order.<br>Example: iPhone 6-S</p>                                                                                                                                                                                                                                    |
-| <p><strong>customer_name</strong><br>Alpha<br>Max: 40</p>               | <p>The customer's name.<br>Example: John Smith</p>                                                                                                                                                                                                                                           |
-| <p><strong>merchant_extra</strong><br>Alphanumeric<br>Max: 999</p>      | <p>Extra data sent by merchant. Will be received and sent back as received. Will not be displayed in any report.<br>Example: JohnSmith</p>                                                                                                                                                   |
-| <p><strong>merchant_extra1</strong><br>Alphanumeric<br>Max: 250</p>     | <p>Extra data sent by merchant. Will be received and sent back as received. Will not be displayed in any report.<br>Example: JohnSmith</p>                                                                                                                                                   |
-| <p><strong>merchant_extra2</strong><br>Alphanumeric<br>Max: 250</p>     | <p>Extra data sent by merchant. Will be received and sent back as received. Will not be displayed in any report.<br>Example: JohnSmith</p>                                                                                                                                                   |
-| <p><strong>merchant_extra3</strong><br>Alphanumeric<br>Max: 250</p>     | <p>Extra data sent by merchant. Will be received and sent back as received. Will not be displayed in any report.<br>Example: JohnSmith</p>                                                                                                                                                   |
-| <p><strong>merchant_extra4</strong><br>Alphanumeric<br>Max: 250</p>     | <p>Extra data sent by merchant. Will be received and sent back as received. Will not be displayed in any report.<br>Example: JohnSmith</p>                                                                                                                                                   |
-| <p><strong>remember_me</strong><br>Alpha<br>Max: 3</p>                  | <p>This parameter provides you with an indication to whether to save this token for the user based on the user selection.<br>Possible/ expected values: -YES -NO</p>                                                                                                                         |
-| <p><strong>phone_number</strong><br>Alphanumeric<br>max: 19</p>         | The customer's phone number. It will be returned if it is shared in request.                                                                                                                                                                                                                 |
-| <p><strong>settlement_reference</strong><br>Alphanumeric<br>max: 34</p> | <p>The Merchant submits unique value to Amazon Payment Services. The value is then passed to the Acquiring bank and displayed to the merchant in the Acquirer settlement file.<br>Example: XYZ9239-yu898</p>                                                                                 |
 
 ## STCPAY Merchant Page
 
