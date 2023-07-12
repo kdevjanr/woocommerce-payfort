@@ -93,6 +93,7 @@ HTTPs Form Post Request.\
 
 {% tabs %}
 {% tab title="Shell" %}
+{% code title="" overflow="wrap" lineNumbers="true" %}
 ```sh
 {
     {
@@ -114,6 +115,7 @@ HTTPs Form Post Request.\
 }
 }
 ```
+{% endcode %}
 {% endtab %}
 
 {% tab title="PHP" %}
@@ -243,7 +245,7 @@ response = http.request(request)
 ```
 {% endtab %}
 
-{% tab title="Untitled" %}
+{% tab title="CURL" %}
 ```
 String jsonRequestString = "{\n    \"amount\": \"68557\",\n    \"digital_wallet\": \"STCPAY\",\n    \"signature\": \"\",\n    \"merchant_identifier\": \"{{merchant_identifier}}\",\n    \"access_code\": \"FIX7skJDGmjJF0WDh2oB\",\n    \"customer_ip\": \"127.0.0.1\",\n    \"language\": \"en\",\n    \"otp\": \"12345\",\n    \"command\": \"PURCHASE\",\n    \"merchant_reference\": \"merchantTest-10117\",\n    \"customer_email\": \"merchant07@merchantdomain.com\",\n    \"return_url\": \"http://127.0.0.1/merchantSHEK/payment/stcResponse\",\n    \"currency\": \"SAR\",\n    \"phone_number\": \"0551111111\",\n    \"remember_me\": \"YES\"\n}";
 
@@ -334,7 +336,9 @@ REST POST request using JSON.\
 
 **Include the following parameters in the request you will send to Amazon Payment Services:**
 
-```shell
+{% tabs %}
+{% tab title="First Tab" %}
+```
 {
     "amount": "68557",
     "service_command": "GENERATE_OTP",
@@ -348,8 +352,10 @@ REST POST request using JSON.\
     "phone_number": "0551111111"
 }
 ```
+{% endtab %}
 
-```php
+{% tab title="Second Tab" %}
+```
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
@@ -385,8 +391,10 @@ curl_close($ch);
 # Print response.
 echo "<pre>$result</pre>";
 ```
+{% endtab %}
 
-```python
+{% tab title="Untitled" %}
+```
 import urllib
 import urllib2
 import json
@@ -416,8 +424,10 @@ response = urllib2.urlopen(req)
 page = response.read()
 print page + '\n\n'
 ```
+{% endtab %}
 
-```ruby
+{% tab title="Untitled" %}
+```
 require 'json'
 require 'net/http'
 require 'net/https'
@@ -448,8 +458,10 @@ request.add_field('Content-Type', 'application/json')
 request.body = arrData
 response = http.request(request)
 ```
+{% endtab %}
 
-```java
+{% tab title="Untitled" %}
+```
 String jsonRequestString = "{\n    \"service_command\": \"GENERATE_OTP\",\n    \"access_code\": \"{{access_code}}\",\n    \"merchant_identifier\": \"{{merchant_identifier}}\",\n    \"merchant_reference\": \"AbhiTest-10080\",\n    \"amount\": \"125000\",\n    \"currency\": \"AED\",\n    \"language\": \"en\",\n    \"customer_email\": \"abhivit@amazon.com\",\n    \"request_expiry_date\":\"2022-07-22T15:36:55+03:00\",\n    \"notification_type\":\"EMAIL\",\n    \"signature\": \"fb466699104651adb8c3eace5a3d8ea8e2dbd4739330b7379a6ece4956bed14b\"\n}";
 
 // Define and Initialize HttpClient
@@ -474,6 +486,8 @@ sb.append(line);
 // Print response
 System.out.println(sb.toString());
 ```
+{% endtab %}
+{% endtabs %}
 
 | ATTRIBUTES                                                                          | Description                                                                                                                                                                                                                                                                            |
 | ----------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
